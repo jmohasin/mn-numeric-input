@@ -1,6 +1,6 @@
 {
   "name": "mn-numeric-input",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Numeric input allowing comma seperator after thousand, can be used for pure integer number as well as for float. Restrict user to enter alphabets only accepts numbers and only one dot in case of float number",
   "keywords": [
     "ember-addon",
@@ -10,11 +10,15 @@
   ],
   "license": "MIT",
   "author": "Mohasin Nadaf",
+  "homepage": "https://emberjs.com/",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmohasin/mn-numeric-input.git"
+  },
   "scripts": {
     "build": "ember build",
     "start": "ember server",
