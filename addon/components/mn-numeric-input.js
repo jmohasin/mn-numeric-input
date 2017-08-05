@@ -14,12 +14,18 @@ const CHAR_LEFT_ARROW = 37;
 const CHAR_UP_ARROW = 38;
 const CHAR_RIGHT_ARROW = 39;
 const CHAR_DOWN_ARROW = 40;
+const CHAR_SHIFT = 16;
+const CHAR_PG_UP = 33;
+const CHAR_PG_DOWN = 34;
+const CHAR_HOME = 35;
+const CHAR_END = 36;
 
 export default Ember.TextField.extend({
 	type: 'text',
 	comma: true,
 	float: false,
 	attributeBindings: ['type', 'comma', 'float'],
+	notAllowedKeys: [CHAR_LEFT_ARROW, CHAR_UP_ARROW, CHAR_RIGHT_ARROW, CHAR_DOWN_ARROW, CHAR_HOME, CHAR_END],
 
 	addComma(inputValue){
 		return String(inputValue).split( /(?=(?:\d{3})+(?:\.|$))/g ).join( ',' );
@@ -90,10 +96,14 @@ export default Ember.TextField.extend({
 
 		this.$().keyup(function(key) {
 
+			if(key.which===CHAR_SHIFT || key.which===CHAR_PG_UP || key.which===CHAR_PG_DOWN ) {
+				return false;
+			}
+
 			let cursorPosition = self.element.selectionStart;
 			let currentValue = (self.value===undefined) ? '' : self.value;
 
-			if( !(key.which === CHAR_LEFT_ARROW || key.which === CHAR_UP_ARROW || key.which === CHAR_RIGHT_ARROW || key.which === CHAR_DOWN_ARROW) ) {
+			if( !( self.notAllowedKeys.includes(key.which) ) ) {
 
 				let previousCommaCount = (currentValue.split(',').length - _1);
 				let txtValue = self.removeNonNumericChars(currentValue);
@@ -132,7 +142,13 @@ export default Ember.TextField.extend({
 			}
 			self.element.cursor = cursorPosition;
 			self.element.selectionStart = cursorPosition;
-			self.element.selectionEnd = cursorPosition;
+			// handles shift + arrow key selection of text input feature for number as well
+			if(key.shiftKey) {							
+				self.element.selectionEnd = self.element.selectionEnd  + ( self.notAllowedKeys.includes(key.which) ? _0 : _1 );
+			}
+			else {
+				self.element.selectionEnd = self.element.selectionStart;
+			}
 		});
 	}
 });

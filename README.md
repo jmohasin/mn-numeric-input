@@ -4,10 +4,8 @@ This README outlines the details of collaborating on this Ember addon.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* `cd mn-numeric-input`
-* `npm install`
-* `bower install`
+* `cd PROJECT_DIR` where PROJECT_DIR is your ember project
+* `npm install mn-numeric-input --save` this will install installation of mn-numeric-input module into node_module directory
 
 ## Easy to use
 * Simple to use, after installation we can specify like following:
@@ -29,14 +27,8 @@ This README outlines the details of collaborating on this Ember addon.
 * `ember serve`
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 
-## Running Tests
+## Improvement
 
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
+* Feel free to suggest Improvements, enhancements
 
 For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
